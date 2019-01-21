@@ -53,6 +53,7 @@ public class CityController {
         CityDto cityDto = new CityDto();
         CountryVo countryVo = countryService.queryCountry(localeCode, countryCode);
         List<CityVo> cityList = cityService.queryCityList(localeCode, countryCode);
+        cityDto.setLocaleCode(localeCode);
         cityDto.setCountry(countryVo);
         cityDto.setCityList(cityList);
         result.setData(cityDto);
