@@ -22,8 +22,11 @@ public class CountryServiceImpl extends ServiceImpl<CountryMapper, Country> impl
     private CountryMapper countryMapper;
     @Override
     public List<CountryVo> queryCountryList(String localeCode) {
-//        Wrapper<Country> countryWrapper = new EntityWrapper<Country>();
-//        countryWrapper.eq("locale_code",localeCode);
-        return countryMapper.queryCountryList(localeCode);
+          return countryMapper.queryCountryList(localeCode);
+    }
+
+    @Override
+    public CountryVo queryCountry(String localeCode, String countryCode) {
+          return countryMapper.queryCountry(localeCode, countryCode);
     }
 }

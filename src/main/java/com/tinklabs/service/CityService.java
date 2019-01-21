@@ -11,7 +11,7 @@ import java.util.List;
 public interface CityService {
     /**
     * description:
-    * @return java.util.List<com.tinklabs.vo.CityVo>
+    * @return java.util.List<com.tinklabs.vo.CityDto>
     * @param localeCode, countryCode
     * @author Landin
     * @date 2019/1/16

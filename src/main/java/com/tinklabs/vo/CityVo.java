@@ -1,9 +1,13 @@
 package com.tinklabs.vo;
 
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.tinklabs.entity.City;
+import com.tinklabs.entity.Country;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.util.List;
 
 /**
  * @description:
@@ -15,11 +19,6 @@ import lombok.ToString;
 @ToString
 public class CityVo {
     private Integer geonameId;
-    private String localeCode;
-    private String continentCode;
-    private String continentName;
-    private String countryCode;
-    private String countryName;
     private String subdivisionISOCode;
     private String subdivision1Name;
     private String subdivision2ISOCode;

@@ -1,10 +1,6 @@
 package com.tinklabs.service;
 
-import com.tinklabs.vo.CityVo;
 import com.tinklabs.vo.CurrencyVo;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 /**
 * description:
@@ -14,7 +10,7 @@ import java.util.List;
 public interface CurrencyService {
     /**
     * description:
-    * @return java.util.List<com.tinklabs.vo.CurrencyVo>
+    * @return java.util.List<com.tinklabs.vo.CurrencyDto>
     * @param localeCode, countryCode
     * @author Landin
     * @date 2019/1/16
