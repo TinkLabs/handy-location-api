@@ -35,9 +35,11 @@ CREATE TABLE `city_full` (
 );
 DROP TABLE currency_full;
 CREATE TABLE `currency_full` (
+  `ID` int NOT NULL AUTO_INCREMENT,
   `locale_code` varchar(32) ,
   `currency_code` VARCHAR(10),
   `currency_name` varchar(64) ,
   `symbol` VARCHAR(10) ,
-  `country_code` VARCHAR(10)
+  `country_code` VARCHAR(10),
+   PRIMARY KEY (`ID`)
 );
