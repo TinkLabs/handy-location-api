@@ -37,10 +37,10 @@ public class CountryController {
     }
     /**
     * description:
-    * @return com.tinklabs.corecommonbase.response.RestResponse<java.util.List<com.tinklabs.vo.CountryDto>>
+    * @return com.tinklabs.corecommonbase.response.RestResponse<com.tinklabs.dto.CountryDto>
     * @param localeCode
     * @author Landin
-    * @date 2019/1/16
+    * @date 2019-01-21
     */
     @ResponseBody
     @GetMapping("/country")

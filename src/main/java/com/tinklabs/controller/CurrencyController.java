@@ -27,10 +27,10 @@ public class CurrencyController {
     private CurrencyService currencyService;
     /**
     * description:
-    * @return com.tinklabs.corecommonbase.response.RestResponse<com.tinklabs.vo.CurrencyDto>
+    * @return com.tinklabs.corecommonbase.response.RestResponse<com.tinklabs.vo.CurrencyVo>
     * @param localeCode, countryCode
     * @author Landin
-    * @date 2019/1/16
+    * @date 2019-01-21
     */
     @ResponseBody
     @GetMapping("/currency")

@@ -10,10 +10,10 @@ import com.tinklabs.vo.CurrencyVo;
 public interface CurrencyService {
     /**
     * description:
-    * @return java.util.List<com.tinklabs.vo.CurrencyDto>
+    * @return com.tinklabs.vo.CurrencyVo
     * @param localeCode, countryCode
     * @author Landin
-    * @date 2019/1/16
+    * @date 2019-01-21
     */
     CurrencyVo queryCurrency(String localeCode , String countryCode);
 }

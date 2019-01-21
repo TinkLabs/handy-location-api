@@ -35,10 +35,10 @@ public class CityController {
     private CountryService countryService;
     /**
     * description:
-    * @return com.tinklabs.corecommonbase.response.RestResponse<java.util.List<com.tinklabs.vo.CityDto>>
+    * @return com.tinklabs.corecommonbase.response.RestResponse<com.tinklabs.dto.CityDto>
     * @param localeCode, countryCode
     * @author Landin
-    * @date 2019/1/16
+    * @date 2019-01-21
     */
     @ResponseBody
     @GetMapping("/city")
