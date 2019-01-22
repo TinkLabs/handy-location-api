@@ -29,4 +29,12 @@ public class CountryServiceImpl extends ServiceImpl<CountryMapper, Country> impl
     public CountryVo queryCountry(String localeCode, String countryCode) {
           return countryMapper.queryCountry(localeCode, countryCode);
     }
+
+    @Override
+    public Integer queryCountryCount(String localeCode, String countryCode) {
+        Wrapper wrapper = new EntityWrapper();
+        wrapper.eq("locale_code", localeCode);
+        wrapper.eq("country_iso_Code", countryCode);
+        return countryMapper.selectCount(wrapper);
+    }
 }

@@ -54,16 +54,16 @@ public class CountryController {
     * @date 2019-01-21
     */
     @ResponseBody
-    @GetMapping("/countrys")
-    public RestResponse<CountryDto> queryCountryList(){
-        String localeCode = localResolver.getLocaleCode(request);
-        RestResponse<CountryDto> result = new RestResponse<>();
-        CountryDto countryDto = new CountryDto();
-        List<CountryVo> countryList = countryService.queryCountryList(localeCode);
-        countryDto.setLocaleCode(localeCode);
-        countryDto.setCountryList(countryList);
-        result.setData(countryDto);
-        return result;
+        @GetMapping("/countries")
+        public RestResponse<CountryDto> queryCountryList(){
+            String localeCode = localResolver.getLocaleCode(request);
+            RestResponse<CountryDto> result = new RestResponse<>();
+            CountryDto countryDto = new CountryDto();
+            List<CountryVo> countryList = countryService.queryCountryList(localeCode);
+            countryDto.setLocaleCode(localeCode);
+            countryDto.setCountryList(countryList);
+            result.setData(countryDto);
+            return result;
     }
     /**
     * description:
@@ -79,6 +79,10 @@ public class CountryController {
             throw new BusinessException(LocationCodeEnum.COUNTRY_CODE_EMPTY.getCode(),LocationCodeEnum.COUNTRY_CODE_EMPTY.getMessage());
         }
         String localeCode = localResolver.getLocaleCode(request);
+        if(countryService.queryCountryCount(localeCode, countryCode) < 1){
+            throw new BusinessException(LocationCodeEnum.COUNTRY_CODE_NOT_EXIST.getCode(),LocationCodeEnum.COUNTRY_CODE_NOT_EXIST.getMessage());
+
+        }
         RestResponse<CountryVo> result = new RestResponse<>();
         CountryVo countryVo = countryService.queryCountry(localeCode, countryCode);
         result.setData(countryVo);

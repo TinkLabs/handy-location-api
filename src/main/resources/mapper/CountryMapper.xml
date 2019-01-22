@@ -39,4 +39,5 @@
         AND t.country_iso_code = #{countryCode}
 
     </select>
+
 </mapper>
