@@ -5,6 +5,8 @@ import com.tinklabs.entity.Currency;
 import com.tinklabs.vo.CurrencyVo;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @description:
  * @author: Landin
@@ -12,4 +14,5 @@ import org.apache.ibatis.annotations.Param;
  **/
 public interface CurrencyMapper extends BaseMapper<Currency> {
      CurrencyVo queryCurrency(@Param("localeCode") String localeCode ,@Param("countryCode")String countryCode);
+     List<CurrencyVo> queryCurrencyList(@Param("localeCode") String localeCode);
 }

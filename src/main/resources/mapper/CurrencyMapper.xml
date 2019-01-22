@@ -26,4 +26,16 @@
         AND t.locale_code = #{localeCode}
         AND t.country_code = #{countryCode}
     </select>
+    <select id="queryCurrencyList" resultType="com.tinklabs.vo.CurrencyVo">
+        SELECT
+        `locale_code` AS localeCode,
+        `currency_code` AS currencyCode,
+        `currency_name` AS currencyName,
+        `symbol` AS symbol,
+        `country_code` AS country_code
+        FROM currency_full t
+        WHERE 1=1
+        AND t.locale_code = #{localeCode}
+    </select>
+
 </mapper>

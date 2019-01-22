@@ -4,17 +4,20 @@ import com.tinklabs.common.LocationCodeEnum;
 import com.tinklabs.corecommonbase.exception.BusinessException;
 import com.tinklabs.corecommonbase.response.RestResponse;
 import com.tinklabs.dto.CountryDto;
-import com.tinklabs.entity.Country;
+import com.tinklabs.resolver.CustomLocaleResolver;
 import com.tinklabs.service.CountryService;
 import com.tinklabs.vo.CountryVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @description:
@@ -27,9 +30,17 @@ import java.util.List;
 public class CountryController {
     @Autowired
     private CountryService countryService;
+    @Autowired
+    private CustomLocaleResolver localResolver;
+    @Autowired
+    protected HttpServletRequest request;
     @ResponseBody
     @RequestMapping("/hello")
     public RestResponse<String> hello() throws BusinessException {
+        Locale locale = LocaleContextHolder.getLocale();
+        Locale locale2 = localResolver.resolveLocale(request);
+        String lang = locale.getLanguage();
+        String lang2 = locale2.getLanguage();
         RestResponse<String> result = new RestResponse<>();
         log.info("test trace id {}");
         result.setData("success.");
@@ -38,22 +49,39 @@ public class CountryController {
     /**
     * description:
     * @return com.tinklabs.corecommonbase.response.RestResponse<com.tinklabs.dto.CountryDto>
-    * @param localeCode
+    * @param
     * @author Landin
     * @date 2019-01-21
     */
     @ResponseBody
-    @GetMapping("/country")
-    public RestResponse<CountryDto> queryCountryList(String localeCode){
-        if(StringUtils.isBlank(localeCode)){
-            throw new BusinessException(LocationCodeEnum.LOCALE_CODE_EMPTY.getCode(),LocationCodeEnum.LOCALE_CODE_EMPTY.getMessage());
-        }
+    @GetMapping("/countrys")
+    public RestResponse<CountryDto> queryCountryList(){
+        String localeCode = localResolver.getLocaleCode(request);
         RestResponse<CountryDto> result = new RestResponse<>();
         CountryDto countryDto = new CountryDto();
         List<CountryVo> countryList = countryService.queryCountryList(localeCode);
         countryDto.setLocaleCode(localeCode);
         countryDto.setCountryList(countryList);
         result.setData(countryDto);
+        return result;
+    }
+    /**
+    * description:
+    * @return com.tinklabs.corecommonbase.response.RestResponse<com.tinklabs.vo.CountryVo>
+    * @param countryCode
+    * @author Landin
+    * @date 2019-01-22
+    */
+    @ResponseBody
+    @GetMapping("/country")
+    public RestResponse<CountryVo> queryCountry(String countryCode){
+        if(StringUtils.isBlank(countryCode)){
+            throw new BusinessException(LocationCodeEnum.COUNTRY_CODE_EMPTY.getCode(),LocationCodeEnum.COUNTRY_CODE_EMPTY.getMessage());
+        }
+        String localeCode = localResolver.getLocaleCode(request);
+        RestResponse<CountryVo> result = new RestResponse<>();
+        CountryVo countryVo = countryService.queryCountry(localeCode, countryCode);
+        result.setData(countryVo);
         return result;
     }
 }

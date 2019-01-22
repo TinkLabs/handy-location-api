@@ -1,6 +1,6 @@
 package com.tinklabs.dto;
 
-import com.tinklabs.entity.Country;
+import com.tinklabs.vo.CurrencyVo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -16,8 +16,5 @@ import java.util.List;
 @ToString
 public class CurrencyDto {
     private String localeCode;
-    private String currencyCode;
-    private String currencyName;
-    private String symbol;
-    private String countryCode;
+    private List<CurrencyVo> currencyList;
 }

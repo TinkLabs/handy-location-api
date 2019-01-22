@@ -13,6 +13,6 @@ import java.util.List;
  * @create: 2018-12-30 16:53
  **/
 public interface CountryMapper extends BaseMapper<Country> {
-     List<CountryVo> queryCountryList(@Param("localeCode") String localeCode);
      CountryVo queryCountry(@Param("localeCode") String localeCode, @Param("countryCode")String countryCode);
+     List<CountryVo> queryCountryList(@Param("localeCode") String localeCode);
 }
