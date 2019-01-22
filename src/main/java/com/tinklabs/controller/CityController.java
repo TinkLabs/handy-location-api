@@ -12,15 +12,12 @@ import com.tinklabs.vo.CountryVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * @description:
@@ -53,6 +50,10 @@ public class CityController {
             throw new BusinessException(LocationCodeEnum.COUNTRY_CODE_EMPTY.getCode(),LocationCodeEnum.COUNTRY_CODE_EMPTY.getMessage());
         }
         String localeCode = localResolver.getLocaleCode(request);
+        if(countryService.queryCountryCount(localeCode, countryCode) < 1){
+            throw new BusinessException(LocationCodeEnum.COUNTRY_CODE_NOT_EXIST.getCode(),LocationCodeEnum.COUNTRY_CODE_NOT_EXIST.getMessage());
+
+        }
         RestResponse<CityDto> result = new RestResponse<>();
         CityDto cityDto = new CityDto();
         CountryVo countryVo = countryService.queryCountry(localeCode, countryCode);

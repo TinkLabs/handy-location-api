@@ -25,4 +25,12 @@ public interface CountryService {
     * @date 2019-01-21
     */
     CountryVo queryCountry(String localeCode, String countryCode);
+    /**
+    * description:
+    * @return int
+    * @param localeCode, countryCode]
+    * @author Landin
+    * @date 2019-01-22
+    */
+    Integer queryCountryCount(String localeCode, String countryCode);
 }

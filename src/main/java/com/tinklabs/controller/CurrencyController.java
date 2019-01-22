@@ -5,6 +5,7 @@ import com.tinklabs.corecommonbase.exception.BusinessException;
 import com.tinklabs.corecommonbase.response.RestResponse;
 import com.tinklabs.dto.CurrencyDto;
 import com.tinklabs.resolver.CustomLocaleResolver;
+import com.tinklabs.service.CountryService;
 import com.tinklabs.service.CurrencyService;
 import com.tinklabs.vo.CurrencyVo;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,8 @@ import java.util.List;
 @RequestMapping("/v1")
 public class CurrencyController {
     @Autowired
+    private CountryService countryService;
+    @Autowired
     private CurrencyService currencyService;
     @Autowired
     private CustomLocaleResolver localResolver;
@@ -48,6 +51,10 @@ public class CurrencyController {
             throw new BusinessException(LocationCodeEnum.COUNTRY_CODE_EMPTY.getCode(),LocationCodeEnum.COUNTRY_CODE_EMPTY.getMessage());
         }
         String localeCode = localResolver.getLocaleCode(request);
+        if(countryService.queryCountryCount(localeCode, countryCode) < 1){
+            throw new BusinessException(LocationCodeEnum.COUNTRY_CODE_NOT_EXIST.getCode(),LocationCodeEnum.COUNTRY_CODE_NOT_EXIST.getMessage());
+
+        }
         RestResponse<CurrencyVo> result = new RestResponse<>();
         CurrencyVo currency = currencyService.queryCurrency(localeCode, countryCode);
         result.setData(currency);
@@ -61,7 +68,7 @@ public class CurrencyController {
     * @date 2019-01-22
     */
     @ResponseBody
-    @GetMapping("/currencys")
+    @GetMapping("/currencies")
     public RestResponse<CurrencyDto> queryCurrencyList(){
         String localeCode = localResolver.getLocaleCode(request);
         RestResponse<CurrencyDto> result = new RestResponse<>();
