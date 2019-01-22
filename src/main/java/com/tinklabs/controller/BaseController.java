@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.plugins.Page;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Locale;
+
 public class BaseController {
     @Autowired
     protected HttpServletRequest request;
@@ -20,5 +22,12 @@ public class BaseController {
             size = Integer.parseInt(pageSize);
         }
         return new Page(current, size);
+    }
+    public String getLocaleCode(){
+        String localeCode = request.getHeader("Accept-Language");
+        if(StringUtils.isBlank(localeCode)){
+            localeCode = "en";
+        }
+        return localeCode;
     }
 }
