@@ -3,6 +3,8 @@ package com.tinklabs.controller;
 import com.tinklabs.common.LocationCodeEnum;
 import com.tinklabs.corecommonbase.exception.BusinessException;
 import com.tinklabs.corecommonbase.response.RestResponse;
+import com.tinklabs.dto.CountryDto;
+import com.tinklabs.entity.Country;
 import com.tinklabs.service.CountryService;
 import com.tinklabs.vo.CountryVo;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +23,7 @@ import java.util.List;
  **/
 @RestController
 @Slf4j
-@RequestMapping("/country")
+@RequestMapping("/v1")
 public class CountryController {
     @Autowired
     private CountryService countryService;
@@ -35,20 +37,23 @@ public class CountryController {
     }
     /**
     * description:
-    * @return com.tinklabs.corecommonbase.response.RestResponse<java.util.List<com.tinklabs.vo.CountryVo>>
+    * @return com.tinklabs.corecommonbase.response.RestResponse<com.tinklabs.dto.CountryDto>
     * @param localeCode
     * @author Landin
-    * @date 2019/1/16
+    * @date 2019-01-21
     */
     @ResponseBody
-    @GetMapping("/queryCountryList")
-    public RestResponse<List<CountryVo>> queryCountryList(String localeCode){
+    @GetMapping("/country")
+    public RestResponse<CountryDto> queryCountryList(String localeCode){
         if(StringUtils.isBlank(localeCode)){
             throw new BusinessException(LocationCodeEnum.LOCALE_CODE_EMPTY.getCode(),LocationCodeEnum.LOCALE_CODE_EMPTY.getMessage());
         }
-        RestResponse<List<CountryVo>> result = new RestResponse<>();
+        RestResponse<CountryDto> result = new RestResponse<>();
+        CountryDto countryDto = new CountryDto();
         List<CountryVo> countryList = countryService.queryCountryList(localeCode);
-        result.setData(countryList);
+        countryDto.setLocaleCode(localeCode);
+        countryDto.setCountryList(countryList);
+        result.setData(countryDto);
         return result;
     }
 }

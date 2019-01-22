@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 @Slf4j
-@RequestMapping("/currency")
+@RequestMapping("/v1")
 public class CurrencyController {
     @Autowired
     private CurrencyService currencyService;
@@ -30,10 +30,10 @@ public class CurrencyController {
     * @return com.tinklabs.corecommonbase.response.RestResponse<com.tinklabs.vo.CurrencyVo>
     * @param localeCode, countryCode
     * @author Landin
-    * @date 2019/1/16
+    * @date 2019-01-21
     */
     @ResponseBody
-    @GetMapping("/queryCurrency")
+    @GetMapping("/currency")
     public RestResponse<CurrencyVo> queryCurrency(String localeCode, String countryCode){
         if(StringUtils.isBlank(localeCode)){
             throw new BusinessException(LocationCodeEnum.LOCALE_CODE_EMPTY.getCode(),LocationCodeEnum.LOCALE_CODE_EMPTY.getMessage());

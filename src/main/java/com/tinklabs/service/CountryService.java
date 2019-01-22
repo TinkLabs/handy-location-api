@@ -1,6 +1,8 @@
 package com.tinklabs.service;
 
 import com.tinklabs.vo.CountryVo;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -11,10 +13,18 @@ import java.util.List;
 public interface CountryService {
     /**
     * description:
-    * @return java.util.List<com.tinklabs.vo.CountryVo>
+    * @return java.util.List<com.tinklabs.entity.Country>
     * @param localeCode
     * @author Landin
-    * @date 2019/1/16
+    * @date 2019-01-21
     */
     List<CountryVo> queryCountryList(String localeCode);
+    /**
+    * description:
+    * @return com.tinklabs.vo.CountryVo
+    * @param localeCode, countryCode
+    * @author Landin
+    * @date 2019-01-21
+    */
+    CountryVo queryCountry(String localeCode, String countryCode);
 }

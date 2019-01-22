@@ -3,6 +3,7 @@
 <mapper namespace="com.tinklabs.mapper.CurrencyMapper">
 
     <resultMap id="BaseResultMap" type="com.tinklabs.entity.Currency">
+        <id column="id" property="id"/>
         <result column="locale_code" property="localeCode"/>
         <result column="currency_code" property="currencyCode"/>
         <result column="currency_name" property="currencyName"/>
@@ -10,7 +11,7 @@
         <result column="country_code" property="countryCode"/>
     </resultMap>
     <sql id="Base_Column_List">
-        locale_code,currency_code,currency_name,symbol,country_name,country_code
+        id,locale_code,currency_code,currency_name,symbol,country_name,country_code
     </sql>
 
     <select id="queryCurrency" resultType="com.tinklabs.vo.CurrencyVo">

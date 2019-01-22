@@ -1,11 +1,9 @@
-package com.tinklabs.vo;
+package com.tinklabs.dto;
 
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.tinklabs.entity.Country;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
 import java.util.List;
 
 /**
@@ -16,10 +14,10 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @ToString
-public class CountryVo {
-    private Integer geonameId;
-    private String continentCode;
-    private String continentName;
+public class CurrencyDto {
+    private String localeCode;
+    private String currencyCode;
+    private String currencyName;
+    private String symbol;
     private String countryCode;
-    private String countryName;
 }
