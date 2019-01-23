@@ -38,10 +38,6 @@ public class CountryController {
     @ResponseBody
     @RequestMapping("/hello")
     public RestResponse<String> hello() throws BusinessException {
-        Locale locale = LocaleContextHolder.getLocale();
-        Locale locale2 = localResolver.resolveLocale(request);
-        String lang = locale.getLanguage();
-        String lang2 = locale2.getLanguage();
         RestResponse<String> result = new RestResponse<>();
         log.info("test trace id {}");
         result.setData("success.");
