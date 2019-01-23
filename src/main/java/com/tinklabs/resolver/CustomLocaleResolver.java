@@ -28,11 +28,16 @@ public class CustomLocaleResolver extends AcceptHeaderLocaleResolver implements 
     @Override
     public Locale resolveLocale(HttpServletRequest request) {
         String headerLang = request.getHeader("Accept-Language");
+        headerLang = headerLang.replace("_","-");
+        if("zh-CN".equals(headerLang)){
+            headerLang = "cn";
+        }
         return headerLang == null || headerLang.isEmpty()
                 ? Locale.getDefault()
                 : (Locale.lookup(Locale.LanguageRange.parse(headerLang), LOCALES) == null ? Locale.getDefault() : Locale.lookup(Locale.LanguageRange.parse(headerLang), LOCALES));
     }
     public String getLocaleCode(HttpServletRequest request){
+
         return resolveLocale(request).getLanguage();
     }
 
