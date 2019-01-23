@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -73,8 +74,8 @@ public class CountryController {
     * @date 2019-01-22
     */
     @ResponseBody
-    @GetMapping("/country")
-    public RestResponse<CountryVo> queryCountry(String countryCode){
+    @GetMapping("/countries/{countryCode}")
+    public RestResponse<CountryVo> queryCountry(@PathVariable String countryCode){
         if(StringUtils.isBlank(countryCode)){
             throw new BusinessException(LocationCodeEnum.COUNTRY_CODE_EMPTY.getCode(),LocationCodeEnum.COUNTRY_CODE_EMPTY.getMessage());
         }
