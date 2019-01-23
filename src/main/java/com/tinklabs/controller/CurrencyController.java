@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,8 +46,8 @@ public class CurrencyController {
     * @date 2019-01-21
     */
     @ResponseBody
-    @GetMapping("/currency")
-    public RestResponse<CurrencyVo> queryCurrency(String countryCode){
+    @GetMapping("/currencies/{countryCode}")
+    public RestResponse<CurrencyVo> queryCurrency(@PathVariable String countryCode){
         if(StringUtils.isBlank(countryCode)){
             throw new BusinessException(LocationCodeEnum.COUNTRY_CODE_EMPTY.getCode(),LocationCodeEnum.COUNTRY_CODE_EMPTY.getMessage());
         }

@@ -44,7 +44,7 @@ public class CityController {
     * @date 2019-01-21
     */
     @ResponseBody
-    @GetMapping("/city")
+    @GetMapping("/cities")
     public RestResponse<CityDto> queryCityList(String countryCode){
         if(StringUtils.isBlank(countryCode)){
             throw new BusinessException(LocationCodeEnum.COUNTRY_CODE_EMPTY.getCode(),LocationCodeEnum.COUNTRY_CODE_EMPTY.getMessage());
