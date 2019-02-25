@@ -27,7 +27,7 @@ import java.util.List;
 @RestController
 @Slf4j
 @RequestMapping("/v1")
-public class CityController {
+public class CityController extends BaseController{
     @Autowired
     private CityService cityService;
     @Autowired
