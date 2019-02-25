@@ -10,7 +10,6 @@ import com.tinklabs.vo.CountryVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * @description:
@@ -28,7 +26,7 @@ import java.util.Locale;
 @RestController
 @Slf4j
 @RequestMapping("/v1")
-public class CountryController {
+public class CountryController extends BaseController{
     @Autowired
     private CountryService countryService;
     @Autowired
@@ -51,8 +49,8 @@ public class CountryController {
     * @date 2019-01-21
     */
     @ResponseBody
-        @GetMapping("/countries")
-        public RestResponse<CountryDto> queryCountryList(){
+    @GetMapping("/countries")
+    public RestResponse<CountryDto> queryCountryList(){
             String localeCode = localResolver.getLocaleCode(request);
             RestResponse<CountryDto> result = new RestResponse<>();
             CountryDto countryDto = new CountryDto();
