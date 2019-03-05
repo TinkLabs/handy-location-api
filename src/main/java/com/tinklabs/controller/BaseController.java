@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.plugins.Page;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Locale;
 
 public class BaseController {
     @Autowired

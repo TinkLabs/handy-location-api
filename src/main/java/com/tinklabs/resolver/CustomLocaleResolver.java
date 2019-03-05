@@ -1,8 +1,6 @@
 package com.tinklabs.resolver;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +26,9 @@ public class CustomLocaleResolver extends AcceptHeaderLocaleResolver implements 
     @Override
     public Locale resolveLocale(HttpServletRequest request) {
         String headerLang = request.getHeader("Accept-Language");
-        headerLang = headerLang.replace("_","-");
+        if(headerLang != null) {
+            headerLang = headerLang.replace("_", "-");
+        }
         if("zh-CN".equals(headerLang)){
             headerLang = "cn";
         }
