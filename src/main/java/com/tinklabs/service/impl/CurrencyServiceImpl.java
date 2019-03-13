@@ -29,4 +29,5 @@ public class CurrencyServiceImpl extends ServiceImpl<CurrencyMapper, Currency> i
         return currencyMapper.queryCurrencyList(localeCode);
     }
 
+
 }
