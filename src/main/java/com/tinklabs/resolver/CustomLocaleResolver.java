@@ -21,6 +21,9 @@ public class CustomLocaleResolver extends AcceptHeaderLocaleResolver implements 
             new Locale("en"),
             new Locale("zh","HK"),
             new Locale("zh","TW"),
+            new Locale("zh","Hans"),
+            new Locale("zh","Hant"),
+            new Locale("zh","CN"),
             new Locale("ja"));
 
     @Override
@@ -29,7 +32,8 @@ public class CustomLocaleResolver extends AcceptHeaderLocaleResolver implements 
         if(headerLang != null) {
             headerLang = headerLang.replace("_", "-");
         }
-        if("zh-CN".equals(headerLang)){
+        //"zh-CN" and "zh-Hant" resolved as simplified Chinese
+        if("zh-CN".equalsIgnoreCase(headerLang) || "zh-Hant".equalsIgnoreCase(headerLang)){
             headerLang = "cn";
         }
         return headerLang == null || headerLang.isEmpty()
