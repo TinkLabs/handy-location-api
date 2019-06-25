@@ -24,7 +24,7 @@
         FROM country_full t
         WHERE 1=1
         AND t.locale_code = #{localeCode}
-
+	    ORDER BY `country_name` asc
     </select>
     <select id="queryCountry" resultType="com.tinklabs.vo.CountryVo">
         SELECT
